@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Register.css";
 import view from "../assets/icons/view.png";
 import hide from "../assets/icons/hide.png";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -10,6 +11,9 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
+  const { signup } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,13 +22,30 @@ export default function Register() {
     if (name === "confirmPassword") setConfirmPassword(value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    try {
+      await signup(email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      if (err.code === "auth/email-already-in-use") {
+        setError("This email is already registered.");
+      } else {
+        setError(err.message);
+      }
+    }
   };
 
   return (
     <div id="register">
       <h1>Register an Account</h1>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
           type="email"
