@@ -35,6 +35,9 @@ export default function Dashboard() {
   const [companyFilter, setCompanyFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "asc" });
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [dateField, setDateField] = useState("appliedDate");
 
   useEffect(() => {
     let tempJobs = [...jobs];
@@ -66,6 +69,17 @@ export default function Dashboard() {
         return 0;
       });
     }
+    if (fromDate || toDate) {
+      tempJobs = tempJobs.filter((job) => {
+        const jobDate = new Date(job[dateField]);
+        const from = fromDate ? new Date(fromDate) : null;
+        const to = toDate ? new Date(toDate) : null;
+
+        if (from && jobDate < from) return false;
+        if (to && jobDate > to) return false;
+        return true;
+      });
+    }
 
     setFilteredJobs(tempJobs);
   }, [
@@ -75,6 +89,9 @@ export default function Dashboard() {
     statusFilter,
     jobTitleFilter,
     sortConfig,
+    fromDate,
+    toDate,
+    dateField,
   ]);
   const handleGo = (job) => {
     alert(`clicked on ${job.title}`);
@@ -104,6 +121,9 @@ export default function Dashboard() {
     setCompanyFilter("");
     setStatusFilter("");
     setSortConfig({ key: "", direction: "asc" });
+    setFromDate("");
+    setToDate("");
+    setDateField("appliedDate");
     setFilteredJobs(initialJobs);
   };
 
@@ -151,32 +171,66 @@ export default function Dashboard() {
           <option value="Offer">Offer</option>
           <option value="Rejected">Rejected</option>
         </select>
+        <select
+          value={dateField}
+          onChange={(e) => setDateField(e.target.value)}
+        >
+          <option value="appliedDate">Applied Date</option>
+          <option value="nextDeadline">Next Deadline</option>
+        </select>
+        <label htmlFor="fromDate">From</label>
+        <input
+          type="date"
+          value={fromDate}
+          id="fromDate"
+          onChange={(e) => setFromDate(e.target.value)}
+        />
+        <label htmlFor="toDate">To</label>
+        <input
+          type="date"
+          value={toDate}
+          id="toDate"
+          onChange={(e) => setToDate(e.target.value)}
+        />
+
         <button onClick={clearFilters}>Clear Filters</button>
       </div>
       <div>
         <table>
           <thead>
             <tr>
-              <th onClick={() => requestSort("title")}>
+              <th
+                onClick={() => requestSort("title")}
+                className={sortConfig.key === "title" ? "sorted" : ""}
+              >
                 Job Title{" "}
                 <span className="sort-indicator">
                   {getSortIndicator("title")}
                 </span>
               </th>
-              <th onClick={() => requestSort("company")}>
+              <th
+                onClick={() => requestSort("company")}
+                className={sortConfig.key === "title" ? "sorted" : ""}
+              >
                 Company
                 <span className="sort-indicator">
                   {getSortIndicator("company")}
                 </span>
               </th>
               <th>Status</th>
-              <th onClick={() => requestSort("appliedDate")}>
+              <th
+                onClick={() => requestSort("appliedDate")}
+                className={sortConfig.key === "title" ? "sorted" : ""}
+              >
                 Applied Date
                 <span className="sort-indicator">
                   {getSortIndicator("appliedDate")}
                 </span>
               </th>
-              <th onClick={() => requestSort("nextDeadline")}>
+              <th
+                onClick={() => requestSort("nextDeadline")}
+                className={sortConfig.key === "title" ? "sorted" : ""}
+              >
                 Deadline Date
                 <span className="sort-indicator">
                   {getSortIndicator("nextDeadline")}
@@ -195,9 +249,16 @@ export default function Dashboard() {
                   <td data-label="Applied Date">{job.appliedDate}</td>
                   <td data-label="Deadline Date">{job.nextDeadline}</td>
                   <td data-label="Action">
-                    <button onClick={() => handleGo(job)}>Go</button>
-                    <button onClick={() => handleEdit(job)}>Edit</button>
-                    <button id="delete" onClick={() => handleDelete(job.id)}>
+                    <button className="go" onClick={() => handleGo(job)}>
+                      Go
+                    </button>
+                    <button className="edit" onClick={() => handleEdit(job)}>
+                      Edit
+                    </button>
+                    <button
+                      className="delete"
+                      onClick={() => handleDelete(job.id)}
+                    >
                       Delete
                     </button>
                   </td>
