@@ -82,10 +82,6 @@ button:hover {
     border-radius: 8px;
   }
 
-  th {
-    display: none;
-  }
-
   td {
     display: flex;
     justify-content: space-between;

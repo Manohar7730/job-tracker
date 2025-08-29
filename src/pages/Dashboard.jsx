@@ -98,6 +98,14 @@ export default function Dashboard() {
     if (sortConfig.key !== key) return "⇅";
     return sortConfig.direction === "asc" ? "▲" : "▼";
   };
+  const clearFilters = () => {
+    setSearchTerm("");
+    setJobTitleFilter("");
+    setCompanyFilter("");
+    setStatusFilter("");
+    setSortConfig({ key: "", direction: "asc" });
+    setFilteredJobs(initialJobs);
+  };
 
   return (
     <div className="dashboard">
@@ -143,6 +151,7 @@ export default function Dashboard() {
           <option value="Offer">Offer</option>
           <option value="Rejected">Rejected</option>
         </select>
+        <button onClick={clearFilters}>Clear Filters</button>
       </div>
       <div>
         <table>
@@ -177,22 +186,30 @@ export default function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {filteredJobs.map((job) => (
-              <tr key={job.id}>
-                <td>{job.title}</td>
-                <td>{job.company}</td>
-                <td>{job.status}</td>
-                <td>{job.appliedDate}</td>
-                <td>{job.nextDeadline}</td>
-                <td>
-                  <button onClick={() => handleGo(job)}>Go</button>
-                  <button onClick={() => handleEdit(job)}>Edit</button>
-                  <button id="delete" onClick={() => handleDelete(job.id)}>
-                    Delete
-                  </button>
+            {filteredJobs.length > 0 ? (
+              filteredJobs.map((job) => (
+                <tr key={job.id}>
+                  <td data-label="Job Title">{job.title}</td>
+                  <td data-label="Company">{job.company}</td>
+                  <td data-label="Status">{job.status}</td>
+                  <td data-label="Applied Date">{job.appliedDate}</td>
+                  <td data-label="Deadline Date">{job.nextDeadline}</td>
+                  <td data-label="Action">
+                    <button onClick={() => handleGo(job)}>Go</button>
+                    <button onClick={() => handleEdit(job)}>Edit</button>
+                    <button id="delete" onClick={() => handleDelete(job.id)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" style={{ textAlign: "center" }}>
+                  No jobs found.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
