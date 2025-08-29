@@ -13,7 +13,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path="*"
           element={
             <PublicRoute>
               <Initial />

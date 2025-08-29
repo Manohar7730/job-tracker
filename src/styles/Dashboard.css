@@ -1,0 +1,99 @@
+.dashboard {
+  width: 95%;
+  max-width: 1200px;
+  padding: 10px;
+}
+
+.dashboard-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.dashboard-filters input,
+.dashboard-filters select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+th:hover{
+  transform: scale(1.05);
+  box-shadow: inset 0px 2px 3px black;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+button {
+  margin: 0 3px;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+#delete{
+  background-color: rgb(255, 0, 0);
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+#delete:hover{
+  background-color:rgb(255, 25, 25) ;
+  transform: scale(1.05);
+}
+
+/* Responsive table for mobile */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+  }
+}
