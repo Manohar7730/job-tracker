@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Dashboard.css";
 
 export default function Dashboard() {
@@ -29,6 +29,19 @@ export default function Dashboard() {
     },
   ];
   const [jobs, setJobs] = useState(initialJobs);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredJobs, setFilteredJobs] = useState(initialJobs);
+  useEffect(() => {
+    let tempJobs = [...jobs];
+    if (searchTerm) {
+      tempJobs = tempJobs.filter(
+        (job) =>
+          job.company.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
+          job.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
+      );
+    }
+    setFilteredJobs(tempJobs);
+  }, [jobs, searchTerm]);
   const handleGo = (job) => {
     alert(`clicked on ${job.title}`);
   };
@@ -38,8 +51,17 @@ export default function Dashboard() {
   const handleDelete = (id) => {
     setJobs(jobs.filter((j) => j.id !== id));
   };
+
   return (
-    <div>
+    <div className="dashboard">
+      <div  className="dashboard-filters">
+        <input
+          type="text"
+          placeholder="Enter job title or company"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
       <div>
         <table>
           <thead>
@@ -53,7 +75,7 @@ export default function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {jobs.map((job) => (
+            {filteredJobs.map((job) => (
               <tr key={job.id}>
                 <td>{job.title}</td>
                 <td>{job.company}</td>
