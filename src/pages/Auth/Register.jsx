@@ -4,9 +4,12 @@ import { useAuth } from "../../hooks/useAuth";
 import AuthForm from "./AuthForm";
 import PasswordField from "./PasswordField";
 import FormError from "./FormError";
+import { db } from "../../api/firebase"; // Firestore
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import '../../styles/AuthContainer.css'
 
 export default function Register() {
+  const [name, setName] = useState(""); // <-- new
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,18 +21,33 @@ export default function Register() {
     e.preventDefault();
     setError("");
 
+    if (!name.trim()) {
+      setError("Name is required");
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
 
     try {
-      await signup(email, password);
+      const userCredential = await signup(email, password);
+      const uid = userCredential.user.uid;
+
+      // Save name & email in Firestore
+      await setDoc(doc(db, "users", uid), {
+        name,
+        email,
+        createdAt: serverTimestamp(),
+      });
+
       navigate("/dashboard");
     } catch (err) {
-      setError(err.code === "auth/email-already-in-use"
-        ? "This email is already registered."
-        : err.message
+      setError(
+        err.code === "auth/email-already-in-use"
+          ? "This email is already registered."
+          : err.message
       );
     }
   };
@@ -37,6 +55,17 @@ export default function Register() {
   return (
     <AuthForm title="Register an Account" onSubmit={handleSubmit}>
       <FormError message={error} />
+      
+      {/* New Name Field */}
+      <input
+        type="text"
+        placeholder="Full Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        name="name"
+        required
+      />
+
       <input
         type="email"
         placeholder="Email"
