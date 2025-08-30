@@ -7,9 +7,9 @@ export default function Header() {
 
   return (
     <header>
-      <h1>
+      <h2>
         Welcome {user ? user.email : "User"}
-      </h1>
+      </h2>
       {user && <button onClick={logout}>Logout</button>}
     </header>
   );

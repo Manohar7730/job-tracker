@@ -7,6 +7,9 @@ import Register from "./pages/Register";
 import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Initial from "./pages/Initial";
+import JobDetails from "./pages/JobDetails";
+import EditJob from "./pages/EditJob";
+import AddJob from "./pages/AddJob";
 
 export default function App() {
   return (
@@ -33,6 +36,30 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/addJob"
+          element={
+            <ProtectedRoute>
+              <AddJob />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/editJob/:id"
+          element={
+            <ProtectedRoute>
+              <EditJob />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/job/:id"
+          element={
+            <ProtectedRoute>
+              <JobDetails />
             </ProtectedRoute>
           }
         />

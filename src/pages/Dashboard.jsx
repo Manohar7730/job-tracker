@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Dashboard.css";
+import { useNavigate } from "react-router-dom";
+import Resume from '../assets/Manohar pediredla.pdf'
 
 export default function Dashboard() {
   const initialJobs = [
@@ -10,6 +12,8 @@ export default function Dashboard() {
       status: "Applied",
       appliedDate: "2025-08-28",
       nextDeadline: "2025-09-05",
+      resume: Resume,
+      notes: "New Notes"
     },
     {
       id: 2,
@@ -38,7 +42,7 @@ export default function Dashboard() {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [dateField, setDateField] = useState("appliedDate");
-
+  const navigate = useNavigate();
   useEffect(() => {
     let tempJobs = [...jobs];
     if (statusFilter)
@@ -94,13 +98,16 @@ export default function Dashboard() {
     dateField,
   ]);
   const handleGo = (job) => {
-    alert(`clicked on ${job.title}`);
+    navigate(`/job/${job.id}`, { state: { job } });
   };
   const handleEdit = (job) => {
-    alert(`clicked edit on ${job.title}`);
+    navigate(`/editJob/${job.id}`, { state: { job } });
   };
   const handleDelete = (id) => {
     setJobs(jobs.filter((j) => j.id !== id));
+  };
+  const handleAddJob = () => {
+    navigate("/addJob");
   };
   const jobTitles = [...new Set(jobs.map((job) => job.title))];
   const companyTitles = [...new Set(jobs.map((job) => job.company))];
@@ -194,6 +201,9 @@ export default function Dashboard() {
         />
 
         <button onClick={clearFilters}>Clear Filters</button>
+      </div>
+      <div>
+        <button onClick={handleAddJob}>+ Add Job</button>
       </div>
       <div>
         <table>
