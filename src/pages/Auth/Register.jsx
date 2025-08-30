@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/Register.css";
-import view from "../assets/icons/view.png";
-import hide from "../assets/icons/hide.png";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
+import view from "../../assets/icons/view.png";
+import hide from "../../assets/icons/hide.png";
+import "../../styles/Register.css";
 
 export default function Register() {
   const [email, setEmail] = useState("");

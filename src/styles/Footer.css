@@ -3,11 +3,16 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 20px;
-  font-size: 10px;
+  height: 10px;
+  font-size: 8px;
   color: #fff;
   background: #3403fb;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(45deg, #3460f2, #601fd2);
+}
+
+footer p {
+  letter-spacing: 0.3em;
 }

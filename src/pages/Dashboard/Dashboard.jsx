@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Dashboard.css";
 import { useNavigate } from "react-router-dom";
-import Resume from '../assets/Manohar pediredla.pdf'
+import Resume from "../../assets/Manohar pediredla.pdf";
+import "../../styles/Dashboard.css";
 
 export default function Dashboard() {
   const initialJobs = [
@@ -13,7 +13,7 @@ export default function Dashboard() {
       appliedDate: "2025-08-28",
       nextDeadline: "2025-09-05",
       resume: Resume,
-      notes: "New Notes"
+      notes: "New Notes",
     },
     {
       id: 2,
@@ -220,7 +220,7 @@ export default function Dashboard() {
               </th>
               <th
                 onClick={() => requestSort("company")}
-                className={sortConfig.key === "title" ? "sorted" : ""}
+                className={sortConfig.key === "company" ? "sorted" : ""}
               >
                 Company
                 <span className="sort-indicator">
@@ -230,7 +230,7 @@ export default function Dashboard() {
               <th>Status</th>
               <th
                 onClick={() => requestSort("appliedDate")}
-                className={sortConfig.key === "title" ? "sorted" : ""}
+                className={sortConfig.key === "appliedDate" ? "sorted" : ""}
               >
                 Applied Date
                 <span className="sort-indicator">
@@ -239,7 +239,7 @@ export default function Dashboard() {
               </th>
               <th
                 onClick={() => requestSort("nextDeadline")}
-                className={sortConfig.key === "title" ? "sorted" : ""}
+                className={sortConfig.key === "nextDeadline" ? "sorted" : ""}
               >
                 Deadline Date
                 <span className="sort-indicator">

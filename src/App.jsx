@@ -1,15 +1,15 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/login";
-import Dashboard from "./pages/Dashboard";
-import Register from "./pages/Register";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import AddJob from "./pages/Dashboard/AddJob";
+import EditJob from "./pages/Dashboard/EditJob";
+import JobDetails from "./pages/Dashboard/JobDetails";
 import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Initial from "./pages/Initial";
-import JobDetails from "./pages/JobDetails";
-import EditJob from "./pages/EditJob";
-import AddJob from "./pages/AddJob";
+import "./styles/App.css";
+import Landing from "./pages/Landing/Landing";
 
 export default function App() {
   return (
@@ -19,7 +19,7 @@ export default function App() {
           path="*"
           element={
             <PublicRoute>
-              <Initial />
+              <Landing />
             </PublicRoute>
           }
         />

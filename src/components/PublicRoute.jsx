@@ -1,11 +1,9 @@
-import React from 'react'
-import { useAuth } from '../hooks/useAuth'
-import { Navigate } from 'react-router-dom';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
-export default function PublicRoute({children}) {
-    const {user} = useAuth();
-   
-  return (
-    user ? <Navigate to='/dashboard'/> : children
-  )
+export default function PublicRoute({ children }) {
+  const { user } = useAuth();
+
+  return user ? <Navigate to="/dashboard" /> : children;
 }

@@ -1,11 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
-import "../styles/JobDetails.css";
+import { useLocation, Link } from "react-router-dom";
+import "../../styles/JobDetails.css";
 
 export default function JobDetails() {
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const location = useLocation();
   const { job } = location.state; // gets the job object
@@ -22,7 +20,10 @@ export default function JobDetails() {
       <h4>Notes: </h4>
       <pre>{job.notes ? job.notes : "No Notes"}</pre>
       <p>
-        Resume: <a href={job.resume} target="_blank">View</a>
+        Resume:{" "}
+        <a href={job.resume} target="_blank">
+          View
+        </a>
       </p>
       <div className="job-details-buttons">
         <button className="back-btn">

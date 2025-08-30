@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/Initial.css";
+import "../../styles/Landing.css";
 
-export default function Initial() {
+export default function Landing() {
   return (
-    <div className="initial-container">
+    <div className="landing-container">
       <h1>Welcome to Job Tracker</h1>
       <button>
         <Link to="/register">Register</Link>
