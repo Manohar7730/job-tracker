@@ -1,18 +1,16 @@
-/* ===== Dashboard Container ===== */
 .dashboard {
   width: 95%;
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 10px;
   font-family: Arial, sans-serif;
 }
 
-/* ===== Filters ===== */
 .dashboard-filters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   align-items: center;
 }
 
@@ -38,7 +36,6 @@
   background-color: #1976d2;
 }
 
-/* ===== Table ===== */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -55,21 +52,10 @@ th, td {
   font-size: 14px;
 }
 
-th {
-  background-color: #f7f7f7;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
+th { background-color: #f7f7f7; cursor: pointer; transition: 0.2s; }
+th:hover { background-color: #e8f2ff; }
+tr:nth-child(even) { background-color: #fafafa; }
 
-th:hover {
-  background-color: #e8f2ff;
-}
-
-tr:nth-child(even) {
-  background-color: #fafafa;
-}
-
-/* ===== Table Action Buttons ===== */
 .action-btn {
   padding: 6px 10px;
   border: none;
@@ -92,29 +78,34 @@ tr:nth-child(even) {
 .action-delete { background-color: #f44336; }
 .action-delete:hover { background-color: #d32f2f; transform: scale(1.05); }
 
-/* ===== Responsive Table ===== */
 @media (max-width: 768px) {
   table, thead, tbody, th, td, tr { display: block; width: 100%; }
   thead { display: none; }
-  tr {
-    background: #fff;
-    margin-bottom: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  }
-  td {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 6px;
-    border: none;
-    border-bottom: 1px solid #f0f0f0;
-  }
+  tr { background: #fff; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+  td { display: flex; justify-content: space-between; padding: 8px 6px; border: none; border-bottom: 1px solid #f0f0f0;}
   td:last-child { border-bottom: none; }
-  td::before {
-    content: attr(data-label);
-    font-weight: bold;
-    color: #444;
-  }
+  td::before { content: attr(data-label); font-weight: bold; color: #444; }
 }
+
+/* Pagination */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 15px;
+  overflow-x: auto;
+  padding: 5px 0;
+}
+
+.pagination button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.pagination button.active { background-color: #2196f3; color: white; }
+.pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
+.pagination .dots { padding: 6px 10px; color: #555; flex: 0 0 auto; }

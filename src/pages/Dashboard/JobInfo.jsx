@@ -1,5 +1,5 @@
+// JobInfo.js
 import React from "react";
-
 export default function JobInfo({ job }) {
   return (
     <>
@@ -8,13 +8,14 @@ export default function JobInfo({ job }) {
       <p>Status: {job.status}</p>
       <p>Applied Date: {job.appliedDate}</p>
       <p>Next Deadline: {job.nextDeadline}</p>
+      <p>Location: {job.location}</p>
+      <p>Salary: {job.salary}</p>
+      <p>Contact: {job.contactEmail}</p>
       <p>
-        Resume:{" "}
-        {job.resume ? (
-          <a href={job.resume} target="_blank" rel="noopener noreferrer">View</a>
-        ) : (
-          "N/A"
-        )}
+        Resume: {job.resume ? <a href={job.resume} target="_blank" rel="noopener noreferrer">View</a> : "N/A"}
+      </p>
+      <p>
+        JD: {job.jdLink ? <a href={job.jdLink} target="_blank" rel="noopener noreferrer">View</a> : "N/A"}
       </p>
     </>
   );

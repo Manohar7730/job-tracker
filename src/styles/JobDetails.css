@@ -1,4 +1,3 @@
-/* ===== Job Details Container ===== */
 .job-details-container {
   max-width: 800px;
   margin: 20px auto;
@@ -23,17 +22,6 @@
   white-space: pre-wrap;
 }
 
-.job-details-container a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.job-details-container a:hover {
-  text-decoration: underline;
-}
-
-/* ===== Job Details Buttons ===== */
 .job-details-buttons {
   display: flex;
   gap: 15px;
@@ -48,29 +36,14 @@
   text-align: center;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  color: #fff;
 }
 
-/* Back Button */
-.job-details-buttons .action-back {
-  background-color: #757575;
-}
-.job-details-buttons .action-back:hover {
-  background-color: #616161;
-  transform: scale(1.05);
-}
+.job-details-buttons .action-back { background-color: #757575; color: white; }
+.job-details-buttons .action-back:hover { background-color: #616161; transform: scale(1.05); }
 
-/* Edit Button */
-.job-details-buttons .action-edit {
-  background-color: #ffeb3b; /* bright yellow */
-  color: #000;
-}
-.job-details-buttons .action-edit:hover {
-  filter: brightness(0.9);
-  transform: scale(1.05);
-}
+.job-details-buttons .action-edit { background-color: #ffeb3b; color: #000; }
+.job-details-buttons .action-edit:hover { filter: brightness(0.9); transform: scale(1.05); }
 
-/* ===== Responsive ===== */
 @media (max-width: 600px) {
   .job-details-container { padding: 15px; }
   .job-details-buttons { flex-direction: column; gap: 10px; }

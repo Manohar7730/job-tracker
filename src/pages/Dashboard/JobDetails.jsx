@@ -7,8 +7,7 @@ import "../../styles/JobDetails.css";
 
 export default function JobDetails() {
   const location = useLocation();
-  const { job } = location.state; // receives job object
-
+  const { job } = location.state;
   return (
     <div className="job-details-container">
       <JobInfo job={job} />

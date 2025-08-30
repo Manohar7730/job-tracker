@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function JobFilters({
   searchTerm,
@@ -19,6 +20,8 @@ export default function JobFilters({
   companyTitles,
   clearFilters,
 }) {
+  const navigate = useNavigate();
+  const handleAdd = () => navigate('/addJob');
   return (
     <div className="dashboard-filters">
       <input
@@ -27,6 +30,8 @@ export default function JobFilters({
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+            <button onClick={handleAdd}>Add Job</button>
+
       <select
         value={jobTitleFilter}
         onChange={(e) => setJobTitleFilter(e.target.value)}
