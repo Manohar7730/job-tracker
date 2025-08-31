@@ -1,3 +1,7 @@
+// src\pages\Auth\FormError.jsx
+
+// Displays form error messages
+
 import React from "react";
 
 export default function FormError({ message }) {

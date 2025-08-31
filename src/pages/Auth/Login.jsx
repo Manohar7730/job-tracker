@@ -1,10 +1,14 @@
+// src\pages\Auth\Login.jsx
+
+// Login page: allows existing users to log in
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import AuthForm from "./AuthForm";
-import PasswordField from "./PasswordField";
-import FormError from "./FormError";
-import '../../styles/AuthContainer.css'
+import { useAuth } from "../../hooks/useAuth.js";
+import AuthForm from "./AuthForm.jsx";
+import PasswordField from "./PasswordField.jsx";
+import FormError from "./FormError.jsx";
+import "../../styles/AuthContainer.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -16,7 +20,6 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
     try {
       await login(email, password);
       navigate("/dashboard");
@@ -33,13 +36,12 @@ export default function Login() {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        name="email"
+        required
       />
       <PasswordField
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
-        name="password"
       />
       <button type="submit" id="loginButton">Login</button>
       <p>

@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { useAuth } from "../../hooks/useAuth";
+// src\components\layout\Header.jsx
+
+// Header component: displays username and logout button
+
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/useAuth.js";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../api/firebase";
+import { db } from "../../api/firebase.js";
 import "../../styles/Header.css";
 
 export default function Header() {
   const { user, logout } = useAuth();
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
 
-  // Fetch user name from Firestore
+  // Fetch username from Firestore when user changes
   useEffect(() => {
-    const fetchName = async () => {
-      if (user) {
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setName(docSnap.data().name);
-        }
-      }
+    const fetchUserName = async () => {
+      if (!user) return setUsername("");
+      const userDoc = doc(db, "users", user.uid);
+      const snapshot = await getDoc(userDoc);
+      if (snapshot.exists()) setUsername(snapshot.data().name);
     };
-    fetchName();
+    fetchUserName();
   }, [user]);
 
   return (
     <header>
-      {<h2>{name}</h2>}
+      {username && <h2>{username}</h2>}
       {user && <button onClick={logout}>Logout</button>}
     </header>
   );

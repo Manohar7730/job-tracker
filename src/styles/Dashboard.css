@@ -1,8 +1,9 @@
+/* Dashboard layout & table styles */
+
 .dashboard {
   width: 95%;
   max-width: 1200px;
-  margin: 10px auto;
-  padding: 10px;
+  margin: 20px auto;
   font-family: Arial, sans-serif;
 }
 
@@ -17,45 +18,51 @@
 .dashboard-filters input,
 .dashboard-filters select,
 .dashboard-filters button {
-  padding: 8px 10px;
+  padding: 8px 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 14px;
-  outline: none;
 }
 
 .dashboard-filters button {
   background-color: #2196f3;
-  color: white;
+  color: #fff;
   cursor: pointer;
   font-weight: 600;
-  transition: 0.2s ease-in-out;
 }
 
 .dashboard-filters button:hover {
   background-color: #1976d2;
 }
 
+/* Table */
 table {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-th, td {
+th,
+td {
   border: 1px solid #eee;
   padding: 10px;
   text-align: center;
   font-size: 14px;
 }
 
-th { background-color: #f7f7f7; cursor: pointer; transition: 0.2s; }
-th:hover { background-color: #e8f2ff; }
-tr:nth-child(even) { background-color: #fafafa; }
+th {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
 
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Action buttons */
 .action-btn {
   padding: 6px 10px;
   border: none;
@@ -63,49 +70,91 @@ tr:nth-child(even) { background-color: #fafafa; }
   cursor: pointer;
   font-weight: 600;
   margin: 0 3px;
-  transition: all 0.2s ease-in-out;
-  font-size: 13px;
-  text-decoration: none;
   color: #fff;
 }
 
-.action-go { background-color: #4caf50; }
-.action-go:hover { background-color: #45a049; transform: scale(1.05); }
+.action-go {
+  background-color: #4caf50;
+}
+.action-edit {
+  background-color: #2196f3;
+}
+.action-delete {
+  background-color: #f44336;
+}
 
-.action-edit { background-color: #2196f3; }
-.action-edit:hover { background-color: #1976d2; transform: scale(1.05); }
-
-.action-delete { background-color: #f44336; }
-.action-delete:hover { background-color: #d32f2f; transform: scale(1.05); }
-
-@media (max-width: 768px) {
-  table, thead, tbody, th, td, tr { display: block; width: 100%; }
-  thead { display: none; }
-  tr { background: #fff; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
-  td { display: flex; justify-content: space-between; padding: 8px 6px; border: none; border-bottom: 1px solid #f0f0f0;}
-  td:last-child { border-bottom: none; }
-  td::before { content: attr(data-label); font-weight: bold; color: #444; }
+.action-go:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+.action-edit:hover {
+  background-color: #1976d2;
+  transform: scale(1.05);
+}
+.action-delete:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
 }
 
 /* Pagination */
 .pagination {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
   margin-top: 15px;
-  overflow-x: auto;
-  padding: 5px 0;
 }
 
 .pagination button {
   padding: 6px 10px;
-  border: none;
   border-radius: 4px;
   cursor: pointer;
-  flex: 0 0 auto;
 }
 
-.pagination button.active { background-color: #2196f3; color: white; }
-.pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
-.pagination .dots { padding: 6px 10px; color: #555; flex: 0 0 auto; }
+.pagination button.active {
+  background-color: #2196f3;
+  color: #fff;
+}
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pagination .dots {
+  padding: 6px 10px;
+  color: #555;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    width: 100%;
+  }
+  thead {
+    display: none;
+  }
+  tr {
+    margin-bottom: 12px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 6px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #444;
+  }
+  td:last-child {
+    border-bottom: none;
+  }
+}

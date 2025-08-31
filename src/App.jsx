@@ -1,15 +1,16 @@
+// src\App.jsx
+
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import AddJob from "./pages/Dashboard/AddJob";
-import EditJob from "./pages/Dashboard/EditJob";
-import JobDetails from "./pages/Dashboard/JobDetails";
-import PublicRoute from "./components/PublicRoute";
-import ProtectedRoute from "./components/ProtectedRoute";
-import "./styles/App.css";
-import Landing from "./pages/Landing/Landing";
+import Landing from "./pages/Landing/Landing.jsx";
+import Login from "./pages/Auth/Login.jsx";
+import Register from "./pages/Auth/Register.jsx";
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import AddJob from "./pages/Dashboard/job/AddJob.jsx";
+import EditJob from "./pages/Dashboard/job/EditJob.jsx";
+import JobDetails from "./pages/Dashboard/jobDetails/JobDetails.jsx";
+import PublicRoute from "./components/PublicRoute.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 export default function App() {
   return (
@@ -28,6 +29,14 @@ export default function App() {
           element={
             <PublicRoute>
               <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
             </PublicRoute>
           }
         />
@@ -61,14 +70,6 @@ export default function App() {
             <ProtectedRoute>
               <JobDetails />
             </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute>
-              <Register />
-            </PublicRoute>
           }
         />
       </Routes>

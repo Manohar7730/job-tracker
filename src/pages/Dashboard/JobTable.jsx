@@ -1,30 +1,35 @@
+// src\pages\Dashboard\JobTable.jsx
+
+// Jobs table component with sorting
+
 import React from "react";
-import JobRow from "./JobRow";
+import JobRow from "./JobRow.jsx";
 
 export default function JobTable({ filteredJobs, sortConfig, requestSort, handleDelete }) {
-  const getSortIndicator = (key) => {
-    if (sortConfig.key !== key) return "⇅";
-    return sortConfig.direction === "asc" ? "▲" : "▼";
+
+  const getSortIcon = key => {
+    if (sortConfig.key !== key) return "↕";
+    return sortConfig.direction === "asc" ? "↑" : "↓";
   };
 
   return (
-    <table>
+    <table className="jobs-table">
       <thead>
         <tr>
-          <th onClick={() => requestSort("title")}>Job Title <span>{getSortIndicator("title")}</span></th>
-          <th onClick={() => requestSort("company")}>Company <span>{getSortIndicator("company")}</span></th>
-          <th>Status</th>
-          <th onClick={() => requestSort("appliedDate")}>Applied Date <span>{getSortIndicator("appliedDate")}</span></th>
-          <th onClick={() => requestSort("nextDeadline")}>Deadline Date <span>{getSortIndicator("nextDeadline")}</span></th>
-          <th>Action</th>
+          <th onClick={() => requestSort("title")}>Job Title {getSortIcon("title")}</th>
+          <th onClick={() => requestSort("company")}>Company {getSortIcon("company")}</th>
+          <th onClick={() => requestSort("status")}>Status {getSortIcon("status")}</th>
+          <th onClick={() => requestSort("appliedDate")}>Applied Date {getSortIcon("appliedDate")}</th>
+          <th onClick={() => requestSort("nextDeadline")}>Deadline {getSortIcon("nextDeadline")}</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {filteredJobs.length > 0 ? (
-          filteredJobs.map((job) => <JobRow key={job.id} job={job} handleDelete={handleDelete} />)
-        ) : (
-          <tr><td colSpan="6" style={{ textAlign: "center" }}>No jobs found.</td></tr>
-        )}
+        {filteredJobs.length === 0 ? (
+          <tr><td colSpan="6" style={{ textAlign: "center" }}>No jobs found</td></tr>
+        ) : filteredJobs.map(job => (
+          <JobRow key={job.id} job={job} handleDelete={handleDelete} />
+        ))}
       </tbody>
     </table>
   );
