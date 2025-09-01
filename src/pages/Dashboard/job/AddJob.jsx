@@ -18,6 +18,9 @@ export default function AddJob() {
   const [status, setStatus] = useState("Applied");
   const [appliedDate, setAppliedDate] = useState("");
   const [nextDeadline, setNextDeadline] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
+  const [resumeLink, setResumeLink] = useState("");
+  const [appliedLink, setAppliedLink] = useState("");
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -36,8 +39,11 @@ export default function AddJob() {
         status,
         appliedDate,
         nextDeadline,
+        jobDescription,
+        resumeLink,
+        appliedLink,
         notes,
-        createdAt: Timestamp.now()
+        createdAt: Timestamp.now(),
       });
       navigate("/dashboard");
     } catch (err) {
@@ -53,13 +59,23 @@ export default function AddJob() {
       <h2>Add Job</h2>
       <form onSubmit={handleSubmit}>
         <label>Job Title*</label>
-        <input type="text" value={title} onChange={e => setTitle(e.target.value)} required />
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
 
         <label>Company*</label>
-        <input type="text" value={company} onChange={e => setCompany(e.target.value)} required />
+        <input
+          type="text"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          required
+        />
 
         <label>Status</label>
-        <select value={status} onChange={e => setStatus(e.target.value)}>
+        <select value={status} onChange={(e) => setStatus(e.target.value)}>
           <option value="Applied">Applied</option>
           <option value="Interview">Interview</option>
           <option value="Offer">Offer</option>
@@ -67,15 +83,47 @@ export default function AddJob() {
         </select>
 
         <label>Applied Date*</label>
-        <input type="date" value={appliedDate} onChange={e => setAppliedDate(e.target.value)} required />
+        <input
+          type="date"
+          value={appliedDate}
+          onChange={(e) => setAppliedDate(e.target.value)}
+          required
+        />
 
         <label>Next Deadline</label>
-        <input type="date" value={nextDeadline} onChange={e => setNextDeadline(e.target.value)} />
+        <input
+          type="date"
+          value={nextDeadline}
+          onChange={(e) => setNextDeadline(e.target.value)}
+        />
+
+        <label>Resume Link</label>
+        <input
+          type="url"
+          value={resumeLink}
+          onChange={(e) => setResumeLink(e.target.value)}
+        />
+        <label>Application Link</label>
+        <input
+          type="url"
+          value={appliedLink}
+          onChange={(e) => setAppliedLink(e.target.value)}
+        />
+        <label>Job Description</label>
+        <textarea
+          value={jobDescription}
+          onChange={(e) => setJobDescription(e.target.value)}
+        ></textarea>
 
         <label>Notes</label>
-        <textarea value={notes} onChange={e => setNotes(e.target.value)}></textarea>
+        <textarea
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+        ></textarea>
 
-        <button type="submit" disabled={loading}>{loading ? "Saving..." : "Add Job"}</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Saving..." : "Add Job"}
+        </button>
       </form>
     </div>
   );
