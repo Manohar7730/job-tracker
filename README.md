@@ -1,73 +1,180 @@
-# Job Tracker (React + Firebase)
+# 🚀 Job Tracker — React Job Application Management System
 
-A personal job application tracker built with **React** and **Firebase**.  
-Helps job seekers organize applications, track status, deadlines, resumes, and notes.
+Job Tracker is a full-featured React-based job application management system that helps users track, filter, sort, and manage their job search efficiently.
+
+It includes authentication, advanced filtering, sorting, and complete CRUD functionality.
 
 ---
 
-## 🚀 Features
-- User Authentication (Firebase Auth: Register/Login)
-- Add, Edit, Delete job applications
-- Track job details: title, company, status, deadlines
-- Save resume/application links
-- Job notes and job descriptions
-- Filter and sort jobs (status, company, deadline, applied date)
-- Responsive UI for desktop and mobile
+## 🌐 Live Demo
+
+Frontend: https://jobapplicationchecker.netlify.app  
+GitHub Repo: https://github.com/Manohar7730/job-application-checker  
 
 ---
 
 ## 🛠 Tech Stack
-- **Frontend**: React, React Router
-- **Backend/Database**: Firebase Firestore
-- **Authentication**: Firebase Auth
-- **Styling**: CSS (can extend with Tailwind/MUI)
+
+- React.js (Hooks & Functional Components)
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- Vite
+- Netlify (Deployment)
 
 ---
 
-## 📷 Screenshots
-(Add screenshots of Login, Dashboard, Job Details)
+## ✨ Features
+
+### 🔐 Authentication
+- Register with Name, Email, Password
+- Confirm Password validation
+- Login with Email & Password
+- Logout functionality
+- Protected dashboard access
+
+### 📊 Dashboard
+- View all job applications
+- Search by Job Title or Company
+- Filter by:
+  - Status
+  - Applied Date
+  - Date Range
+- Clear Filters option
+- Column Sorting:
+  - Job Title
+  - Company
+  - Status
+  - Applied Date
+  - Deadline
+
+### ➕ Job Management
+- Add new job
+- Edit job
+- Delete job
+- View job details
+
+### 📝 Job Fields
+- Job Title
+- Company
+- Status (Dropdown)
+- Applied Date
+- Deadline
+- Resume Link
+- Application Link
+- Job Description
+- Notes
+
+### ⚡ UX Enhancements
+- Loading state while fetching jobs
+- Clean reusable components
+- Controlled forms
+- Component-based architecture
 
 ---
 
-## 🔒 Security
-- Each user can only access their own jobs.
-- Firestore security rules enforce per-user data access.
+## 🧭 How to Use
+
+1. Register with Name, Email, Password
+2. Login using credentials
+3. Dashboard loads job data
+4. Use search box to filter by title/company
+5. Use dropdown filters for status & dates
+6. Click "Add Job" to create a new entry
+7. Click "Go" in actions to view details
+8. Edit or Delete job from dashboard
+9. Logout when finished
 
 ---
 
-## 📦 Setup
-1. Clone repo
-   ```bash
-   git clone https://github.com/yourusername/job-tracker.git
-   cd job-tracker
+## 📁 Project Structure
 
-2. Install dependencies
-   ```bash
-   npm install
+/src  
+  /components  
+    JobForm.jsx  
+    JobList.jsx  
+    JobItem.jsx  
+    Loader.jsx  
+  /services  
+    jobService.js  
+  App.jsx  
+  main.jsx  
+  index.css  
 
-3. Setup Firebase project
+---
 
-  - Add Firebase config in src/api/firebase.js
+## 📸 Screenshots
 
-  - Enable Firestore and Authentication
+![Login](screenshots/login.png)
+![Dashboard](screenshots/dashboardWithFilters.png)  
+![Add Job](screenshots/addjobForm.png)  
+![JobDetails](screenshots/jobTaskDetails.png)
+![Register](screenshots/register.png)
 
-4. Run the app
-  ```bash
- npm start
-  ```
- ## 🌍 Deployment
+---
 
-- Frontend deployed on Netlify
-- https://jobprogress.netlify.app/
-- Backend powered by Firebase Firestore
+## 🔧 Quick Local Setup
 
-## Screenshots
-<img width="1897" height="848" alt="Screenshot 2025-09-01 120348" src="https://github.com/user-attachments/assets/1c951778-36ca-4712-a3a6-8d0de4fc8c79" />
-<img width="1913" height="864" alt="Screenshot 2025-09-01 120536" src="https://github.com/user-attachments/assets/d70a7114-9e9e-463e-8b2f-08961014f024" />
+### Prerequisites
+- Node.js 18+
+- npm
 
+### Installation
 
+git clone https://github.com/Manohar7730/job-application-checker.git  
+cd job-application-checker  
+npm install  
+npm run dev  
+
+---
+
+## 📦 Build for Production
+
+npm run build  
+
+---
+
+## 🏗 Architecture Notes
+
+- App component maintains global state
+- API logic separated in service layer
+- Immutable state updates using map & filter
+- Controlled form inputs
+- Modular reusable UI components
+
+---
+
+## ⚠ Known Limitations (V1)
+
+- Basic authentication (no email verification)
+- No role-based access
+- No backend persistence if using local storage (if applicable)
+- Limited UI animations
+
+---
 
 ## 👨‍💻 Author
 
-Manohar Pediredla
-Frontend Developer | React | JavaScript | Firebase
+Manohar Pediredla  
+Junior Software Engineer | React Developer  
+Email: manoharpediredla2@gmail.com  
+LinkedIn: https://linkedin.com/in/manoharpediredla  
+
+---
+
+## ⭐ Why This Project Matters
+
+This project demonstrates:
+
+- Strong React fundamentals
+- Authentication workflow
+- Advanced filtering & sorting logic
+- CRUD application design
+- Clean component-based architecture
+- Frontend deployment workflow
+
+---
+
+## 📄 License
+
+@Manohar_Pediredla
